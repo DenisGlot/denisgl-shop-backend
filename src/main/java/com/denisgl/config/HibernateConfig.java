@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = {"com.denisgl.dto"})
+@ComponentScan(basePackages = {"com.denisgl.dtoimpl", "com.denisgl.daoimpl"})
 @EnableTransactionManagement
 public class HibernateConfig {
 
@@ -21,7 +21,7 @@ public class HibernateConfig {
     public static final String DATABASE_DRIVER = "org.postgresql.Driver";
     public static final String DATABASE_DIALECT = "org.hibernate.dialect.PostgreSQL95Dialect";
     public static final String DATABASE_USERNAME = "postgres";
-    public static final String DATABASE_PASSWORD = "";
+    public static final String DATABASE_PASSWORD = "123456";
 
     @Bean
     DataSource getDataSource() {
@@ -38,7 +38,7 @@ public class HibernateConfig {
     public SessionFactory getSessionFactory(DataSource dataSource) {
         LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource);
         builder.addProperties(getHibernateProperties());
-        builder.scanPackages("com.denisgl.dto");
+        builder.scanPackages("com.denisgl.dtoimpl");
 
         return builder.buildSessionFactory();
     }
@@ -55,6 +55,7 @@ public class HibernateConfig {
         properties.put("hibernate.dialect", DATABASE_DIALECT);
         properties.put("hibernate.show_sql", "true");
         properties.put("hibernate.format_sql", "true");
+        properties.put("hibernate.hbm2ddl.auto", "update");
 
         return properties;
     }

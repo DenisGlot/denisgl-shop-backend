@@ -1,12 +1,16 @@
 package com.denisgl.dao;
 
-import com.denisgl.dto.Category;
+import com.denisgl.dto.ICategory;
 
 import java.util.List;
 
 public interface ICategoryDAO {
 
-    List<Category> getCategories();
+    List getCategories();
 
-    Category getCategory(int id);
+    ICategory getCategory(int id);
+
+    ICategory merge(ICategory hibernateCategory);
+
+    void remove(ICategory category);
 }
