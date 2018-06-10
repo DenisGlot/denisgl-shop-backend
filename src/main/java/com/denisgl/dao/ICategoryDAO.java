@@ -1,12 +1,13 @@
 package com.denisgl.dao;
 
 import com.denisgl.dto.ICategory;
+import com.denisgl.filter.CategoryFilter;
 
 import java.util.List;
 
 public interface ICategoryDAO {
 
-    List getCategories();
+    List<ICategory> getCategories(CategoryFilter filter);
 
     ICategory getCategory(int id);
 

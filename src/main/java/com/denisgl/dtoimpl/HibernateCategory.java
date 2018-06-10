@@ -8,19 +8,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table(name = "category")
+@Table(name = "category", indexes = {
+        @Index(name = "category_id_index", columnList = "id"),
+})
+@org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
 public class HibernateCategory implements ICategory {
 
     private int id;
     private String name;
     private String description;
     private String imageURL;
-    private boolean active = true;
+    private boolean active;
 
     @Override
     @Id
@@ -65,8 +69,8 @@ public class HibernateCategory implements ICategory {
     }
 
     @Override
-    @Column(name = "active")
-    public boolean isActive() {
+    @Column(name = "is_active")
+    public boolean getActive() {
         return active;
     }
 

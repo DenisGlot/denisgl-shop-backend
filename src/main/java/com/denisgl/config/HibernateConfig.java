@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = {"com.denisgl.dtoimpl", "com.denisgl.daoimpl"})
+@ComponentScan(basePackages = {"com.denisgl.dtoimpl", "com.denisgl.daoimpl", "com.denisgl.serviceimpl"})
 @EnableTransactionManagement
 public class HibernateConfig {
 
@@ -55,7 +55,7 @@ public class HibernateConfig {
         properties.put("hibernate.dialect", DATABASE_DIALECT);
         properties.put("hibernate.show_sql", "true");
         properties.put("hibernate.format_sql", "true");
-        properties.put("hibernate.hbm2ddl.auto", "update");
+//        properties.put("hibernate.hbm2ddl.auto", "update");
 
         return properties;
     }
