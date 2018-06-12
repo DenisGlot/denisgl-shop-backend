@@ -2,22 +2,22 @@ package com.denisgl.filter;
 
 public abstract class PagingFilter {
 
-    private int firstResult;
-    private int maxResult;
+    private int pageNumber;
+    private int pageSize;
 
-    public int getFirstResult() {
-        return firstResult;
+    public int getPageNumber() {
+        return pageNumber;
     }
 
-    public void setFirstResult(int firstResult) {
-        this.firstResult = firstResult;
+    public void setPageNumber(int pageNumber) {
+        this.pageNumber = pageNumber;
     }
 
-    public int getMaxResult() {
-        return maxResult;
+    public int getPageSize() {
+        return pageSize;
     }
 
-    public void setMaxResult(int maxResult) {
-        this.maxResult = maxResult;
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
     }
 }

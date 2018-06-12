@@ -10,7 +10,7 @@ public interface IProduct {
 
     String getDescription();
 
-    double getUnit_price();
+    double getUnitPrice();
 
     int getQuantity();
 

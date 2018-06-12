@@ -31,7 +31,7 @@ public class HibernateProduct implements IProduct {
     private String name;
     private String brand;
     private String description;
-    private double unit_price;
+    private double unitPrice;
     private int quantity;
     private int purchases;
     private int views;
@@ -79,12 +79,13 @@ public class HibernateProduct implements IProduct {
     }
 
     @Override
-    public double getUnit_price() {
-        return unit_price;
+    @Column(name = "unit_price")
+    public double getUnitPrice() {
+        return unitPrice;
     }
 
-    public void setUnit_price(double unit_price) {
-        this.unit_price = unit_price;
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     @Override

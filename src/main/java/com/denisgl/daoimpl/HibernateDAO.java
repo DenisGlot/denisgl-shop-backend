@@ -28,14 +28,15 @@ public abstract class HibernateDAO<E> {
     }
 
     protected void setPaging(Query query, PagingFilter filter) {
-        int firstResult = filter.getFirstResult();
-        if (firstResult > 0) {
-            query.setFirstResult(firstResult);
-        }
+        int pageSize = filter.getPageSize();
+        int pageNumber = filter.getPageNumber();
 
-        int maxResult = filter.getMaxResult();
-        if (maxResult > 0) {
-            query.setMaxResults(maxResult);
+        if (pageSize > 0) {
+            query.setMaxResults(pageSize);
+
+            if (pageNumber > 0) {
+                query.setFirstResult(pageNumber * pageSize);
+            }
         }
     }
 

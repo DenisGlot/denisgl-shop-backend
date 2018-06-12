@@ -2,11 +2,9 @@ package com.denisgl.daoimpl;
 
 import com.denisgl.dto.ICategory;
 import com.denisgl.dto.IProduct;
-import com.denisgl.dtoimpl.HibernateCategory;
 import com.denisgl.dtoimpl.HibernateProduct;
 import com.denisgl.filter.ProductFilter;
 import com.denisgl.service.ICatalogService;
-import org.hibernate.Hibernate;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -39,7 +37,7 @@ public class HibernateProductDAOTest {
     @Test
     public void getProductByFilterMaxResult() {
         ProductFilter filter = new ProductFilter();
-        filter.setMaxResult(1);
+        filter.setPageSize(1);
         List<IProduct> products = catalogService.getProducts(filter);
         assertEquals(1, products.size());
     }
