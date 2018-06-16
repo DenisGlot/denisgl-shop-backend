@@ -130,7 +130,6 @@ public class HibernateProduct implements IProduct {
     }
 
     @Override
-    @JsonIgnore
     public String getCode() {
         return code;
     }
