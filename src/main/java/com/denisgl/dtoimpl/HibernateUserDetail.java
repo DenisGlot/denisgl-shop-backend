@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "user_detail", indexes = {
@@ -107,5 +108,21 @@ public class HibernateUserDetail implements IUserDetail {
 
     public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof HibernateUserDetail)) return false;
+        HibernateUserDetail that = (HibernateUserDetail) o;
+        return getId() == that.getId() &&
+                Objects.equals(getFirstName(), that.getFirstName()) &&
+                Objects.equals(getLastName(), that.getLastName());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getId(), getFirstName(), getLastName());
     }
 }

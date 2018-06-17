@@ -10,9 +10,13 @@ import java.util.List;
 
 public interface ICatalogService {
 
+    List<ICategory> getCategories();
+
     List<ICategory> getCategories(CategoryFilter filter);
 
     ICategory getCategory(int id);
+
+    List<IProduct> getProducts();
 
     List<IProduct> getProducts(ProductFilter filter);
 

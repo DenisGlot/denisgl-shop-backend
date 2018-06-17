@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "product",
@@ -147,5 +148,21 @@ public class HibernateProduct implements IProduct {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof HibernateProduct)) return false;
+        HibernateProduct that = (HibernateProduct) o;
+        return getId() == that.getId() &&
+                Objects.equals(getName(), that.getName()) &&
+                Objects.equals(getDescription(), that.getDescription());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getId(), getName(), getDescription());
     }
 }

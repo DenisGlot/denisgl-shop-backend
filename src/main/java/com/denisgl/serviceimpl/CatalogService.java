@@ -23,6 +23,11 @@ public class CatalogService implements ICatalogService {
     private IProductDAO productDAO;
 
     @Override
+    public List<ICategory> getCategories() {
+        return categoryDAO.getCategories(new CategoryFilter());
+    }
+
+    @Override
     public List<ICategory> getCategories(CategoryFilter filter) {
         return categoryDAO.getCategories(filter);
     }
@@ -32,6 +37,11 @@ public class CatalogService implements ICatalogService {
         return categoryDAO.getCategory(id);
     }
 
+
+    @Override
+    public List<IProduct> getProducts() {
+        return productDAO.getProducts(new ProductFilter());
+    }
 
     @Override
     public List<IProduct> getProducts(ProductFilter filter) {
