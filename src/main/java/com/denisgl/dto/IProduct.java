@@ -1,5 +1,9 @@
 package com.denisgl.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.persistence.Transient;
+
 public interface IProduct {
 
     int getId();
@@ -23,4 +27,7 @@ public interface IProduct {
     String getCode();
 
     boolean getActive();
+
+    @Transient
+    MultipartFile getFile();
 }

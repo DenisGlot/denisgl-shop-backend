@@ -3,6 +3,7 @@ package com.denisgl.dtoimpl;
 import com.denisgl.dto.ICategory;
 import com.denisgl.dto.IProduct;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +16,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "product",
@@ -40,6 +46,12 @@ public class HibernateProduct implements IProduct {
 
     private ICategory category;
 
+    public MultipartFile file;
+
+    public HibernateProduct() {
+        this.code = "PRD" + UUID.randomUUID().toString().substring(26).toUpperCase();
+    }
+
     @Override
     @Id
     @SequenceGenerator(name="nextIdProduct",sequenceName="product_id_seq", allocationSize=1)
@@ -53,6 +65,7 @@ public class HibernateProduct implements IProduct {
     }
 
     @Override
+    @NotBlank(message = "Please enter product name")
     public String getName() {
         return name;
     }
@@ -62,6 +75,7 @@ public class HibernateProduct implements IProduct {
     }
 
     @Override
+    @NotBlank(message = "Please enter product brand")
     public String getBrand() {
         return brand;
     }
@@ -71,6 +85,7 @@ public class HibernateProduct implements IProduct {
     }
 
     @Override
+    @NotBlank(message = "Please enter product description")
     public String getDescription() {
         return description;
     }
@@ -81,6 +96,7 @@ public class HibernateProduct implements IProduct {
 
     @Override
     @Column(name = "unit_price")
+    @Min(value = 1, message = "Price cannot be less than 1!")
     public double getUnitPrice() {
         return unitPrice;
     }
@@ -148,6 +164,16 @@ public class HibernateProduct implements IProduct {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    @Override
+    @Transient
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 
     @Override
